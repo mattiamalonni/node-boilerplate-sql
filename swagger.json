@@ -1,0 +1,89 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "",
+    "version": "1.0.0",
+    "title": "My Project"
+  },
+  "tags": [{ "name": "posts" }],
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "security": [{ "token": [] }],
+  "paths": {
+    "/posts": {
+      "get": {
+        "tags": ["posts"],
+        "summary": "Return all posts",
+        "responses": {
+          "200": { "description": "OK" }
+        }
+      },
+      "post": {
+        "tags": ["posts"],
+        "summary": "Create a new post",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "post",
+            "schema": {
+              "type": "object",
+              "required": ["title", "body"],
+              "properties": {
+                "title": { "type": "string" },
+                "body": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK" }
+        }
+      }
+    },
+    "/posts/{id}": {
+      "parameters": [{ "name": "id", "in": "path", "type": "string", "required": true }],
+      "get": {
+        "tags": ["posts"],
+        "summary": "Post details",
+        "responses": {
+          "200": { "description": "OK" }
+        }
+      },
+      "put": {
+        "tags": ["posts"],
+        "summary": "Update a post",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "post",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "body": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK" }
+        }
+      },
+      "delete": {
+        "tags": ["posts"],
+        "summary": "Delete a post",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": { "description": "OK" }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": { "type": "apiKey", "name": "Authorization", "in": "header" }
+  },
+  "definitions": {}
+}

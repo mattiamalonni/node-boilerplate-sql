@@ -1,0 +1,12 @@
+# MISC
+.DS_Store
+
+# NODE
+/node_modules
+
+# LOGS
+/logs/*
+!/logs/.keep
+
+# ENV
+.env
